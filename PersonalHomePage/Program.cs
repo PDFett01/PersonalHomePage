@@ -1,7 +1,15 @@
+using PersonalHomePage.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
+var movieApiKey = builder.Configuration["Movies:ServiceApiKey"];
+
+IConfiguration configuration = builder.Configuration;
+IWebHostEnvironment environment = builder.Environment;
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
+
+ConfigureServices(builder.Services, configuration);
 
 var app = builder.Build();
 
@@ -32,3 +40,12 @@ app.MapGet("/hello", () => {
 app.MapDefaultControllerRoute();
 
 app.Run();
+
+void ConfigureServices(IServiceCollection services, IConfiguration configuration) 
+{
+    var dc = new DependencyConfigurer();
+    dc.ConfigureDependencyInjection(services, configuration);
+    services.AddSingleton<IDependencyConfigurer>(dc);
+
+    services.AddHttpClient();
+}

@@ -4,10 +4,16 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>d3eebaf6-eb2b-48a3-8c7f-0f9bd67014b1</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PersonalHomePage.Models\PersonalHomePage.Models.csproj" />
+    <ProjectReference Include="..\PersonalHomePage.Services\PersonalHomePage.Services.csproj" />
   </ItemGroup>
 
 </Project>
